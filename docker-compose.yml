@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  database:
+    image: postgres:14.4
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=p
+    healthcheck:
+      test: "pg_isready -h localhost -p 5432 -U postgres"
+      interval: 2s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
